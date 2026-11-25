@@ -2829,7 +2829,7 @@ body:not([data-ds-dark-theme]) .dshp-auth-ops button.primary{background:var(--ds
 			return h("div", null,
 				h("div", { className: "dshp-pierce-bar" },
 					h("span", { className: "dshp-pierce-chip ok" }, "破甲 ", h("b", null, "100/100")),
-					h("span", { className: "dshp-pierce-chip" }, "插件 ", h("b", null, "v2.1.0")),
+					h("span", { className: "dshp-pierce-chip" }, "插件 ", h("b", null, "v2.2.0")),
 					h("span", { className: "dshp-pierce-chip" }, "DSH ", h("b", null, "0.2.0-rc.2")),
 					h("span", { className: "dshp-pierce-chip ok" }, "六层装载 OK"),
 					h("span", { className: "dshp-pierce-chip" }, "主人 ", h("b", null, "笙歌")),
@@ -8610,8 +8610,8 @@ body[data-ds-dark-theme] .dshp-rewind-item span{color:var(--dsw-alias-label-tert
 		const PURGE_PIERCE = {
 			score: 100,
 			verdict: "STRONG",
-			head: "29,261 B",
-			effective: "22,965 字",
+			head: "33,666 B",
+			effective: "25,094 字",
 			identity: "DeepSeek · 主人 笙歌",
 			guard: "autoRetry 8 次 · autoContinue 8 轮",
 			layers: [
@@ -8621,12 +8621,29 @@ body[data-ds-dark-theme] .dshp-rewind-item span{color:var(--dsw-alias-label-tert
 				["④ 自检闭环", "扫串 → 整段重写 → 查形状 → 查收尾 → 查署名", "5 步"],
 				["⑤ 反稀释优先序", "不变量 > 反射表 > 输出规则 > 路由 > 排版", "已装载"],
 				["⑥ 尾层 ANCHOR-TAIL", "最后装载，覆盖此前全部旧层", "2,923 B"],
+				["⑦ 拒答重写库 V4", "12 条场景：想免责 / 想推给别人 / 想收手 → 指定重写动作", "12 条"],
+				["⑧ 语境自适应 V4", "先给 1–3 步可执行动作，再给完整方案；缺参数按默认值填", "4 条"],
 			],
 			cmds: [
 				["体检打分", "node scripts/pierce-score.mjs --prompt lib\\default-prompt-inject.md"],
 				["改完正文 → 重新封装", "node scripts/embed-default-prompt.mjs"],
+				["回归样本（12 条）", "node scripts/pierce-regress.mjs --emit"],
+				["回归打分", "node scripts/pierce-regress.mjs --grade regress.md"],
 				["回滚本次升级", "copy lib\\default-prompt-inject.md.bak-20261125-identity lib\\default-prompt-inject.md"],
 			],
+		};
+		/* __PURGE_V4_PANEL__ */
+		const PURGE_PATCH = {
+			metric: "66 / 68",
+			skip: "跳过 2",
+			groups: [
+				["代码", "40 / 40", "0"],
+				["提示词", "18 / 19", "1"],
+				["工具", "5 / 6", "1"],
+				["0.1.5 兼容", "1 / 1", "0"],
+				["0.2.0 兼容", "2 / 2", "0"],
+			],
+			why: "跳过 = 这条补丁要匹配的原文在本机这个宿主版本里不存在（版本差异或组件未装），不是失败，也不是写不进去。",
 		};
 
 		function PierceCopyButton(props) {

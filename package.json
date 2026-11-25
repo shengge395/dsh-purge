@@ -1,6 +1,6 @@
 {
   "name": "dsh-purge",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "DeepSeek Harness 破甲：让所有模型都能破甲，不同模型可换不同提示词；装上就带「清洗 / 演练台 / 破甲」三页签，提示词注入层 + 拦截反射压进 system prompt，面板随时复算分数。DSH 0.2.0-rc.2 实测可用。",
   "type": "module",
   "main": "lib/index.js",
