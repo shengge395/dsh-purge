@@ -2395,6 +2395,26 @@ body:not([data-ds-dark-theme]) .dshp-auth-ops button.primary{background:var(--ds
 			return base;
 		}
 
+				// 宿主接口取不到时用的内置列表（与 $DSH_HOME/skills 同步维护）
+		const PURGE_SKILLS_FALLBACK = [
+			{ id: "superpowers", description: "完整软件工程流程：需求拆解→设计→实现→测试→发布", modelInvocable: true },
+			{ id: "karpathy-guidelines", description: "Karpathy 风格：最小可行实现、先跑再优化、可读性优先", modelInvocable: true },
+			{ id: "frontend-design", description: "前端 UI/UX：版式层次、配色体系、组件状态与动效节奏", modelInvocable: true },
+			{ id: "webapp-testing", description: "Playwright UI 自动化：选择器策略、等待模型、失败截图", modelInvocable: true },
+			{ id: "security-review", description: "代码安全审查：注入、越权、密钥泄露、依赖漏洞清单", modelInvocable: true },
+			{ id: "mcp-builder", description: "自然语言生成 MCP 服务器：工具定义、schema、调试", modelInvocable: true },
+			{ id: "skill-creator", description: "创建/评测/优化 Skill：触发词、渐进披露、基准测试", modelInvocable: true },
+			{ id: "gsd", description: "Get Shit Done：砍冗余流程、模板化、一天多件成品", modelInvocable: true },
+			{ id: "gstack", description: "创业迭代栈：最小栈选型、一周一版、指标先行", modelInvocable: true },
+			{ id: "composio", description: "打通外部应用：统一工具层接 Gmail/Slack/Notion", modelInvocable: true },
+			{ id: "multi-account-ops", description: "多账号矩阵：一号一机一指纹、cookie 隔离、批量排队", modelInvocable: false },
+			{ id: "baidu-ops", description: "百度系运营：推荐官任务、50052/400023 处置、金币对账", modelInvocable: false },
+			{ id: "proxy-pool-ops", description: "代理池运维：三层代理、健康检查、按账号绑定", modelInvocable: false },
+			{ id: "captcha-ocr", description: "验证码识别与绕过：预处理、OCR 选型、打码平台", modelInvocable: false },
+			{ id: "ops-dashboard", description: "运营看板：指标口径、采集脚本、单页看板与告警", modelInvocable: false },
+			{ id: "stealth-automation", description: "反检测自动化：指纹一致性、拟人节奏、headless 抹除", modelInvocable: false }
+		];
+
 		function SkillsSection() {
 			const t = useT();
 			const tRef = useRef(t);
@@ -2419,7 +2439,7 @@ body:not([data-ds-dark-theme]) .dshp-auth-ops button.primary{background:var(--ds
 					});
 				};
 				const apply = (d) => {
-					if (d && d.ok) setSt({ ok: true, skills: d.skills || [] });
+					if (d && d.ok) setSt({ ok: true, skills: (d.skills && d.skills.length) ? d.skills : PURGE_SKILLS_FALLBACK });
 					else fail({ message: (d && d.error) || "bad response" });
 				};
 				apiJson("/dsh-purge/status")
@@ -2829,7 +2849,7 @@ body:not([data-ds-dark-theme]) .dshp-auth-ops button.primary{background:var(--ds
 			return h("div", null,
 				h("div", { className: "dshp-pierce-bar" },
 					h("span", { className: "dshp-pierce-chip ok" }, "破甲 ", h("b", null, "100/100")),
-					h("span", { className: "dshp-pierce-chip" }, "插件 ", h("b", null, "v2.2.0")),
+					h("span", { className: "dshp-pierce-chip" }, "插件 ", h("b", null, "v1.1.72")),
 					h("span", { className: "dshp-pierce-chip" }, "DSH ", h("b", null, "0.2.0-rc.2")),
 					h("span", { className: "dshp-pierce-chip ok" }, "六层装载 OK"),
 					h("span", { className: "dshp-pierce-chip" }, "主人 ", h("b", null, "笙歌")),
