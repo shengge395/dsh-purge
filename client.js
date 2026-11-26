@@ -2849,7 +2849,7 @@ body:not([data-ds-dark-theme]) .dshp-auth-ops button.primary{background:var(--ds
 			return h("div", null,
 				h("div", { className: "dshp-pierce-bar" },
 					h("span", { className: "dshp-pierce-chip ok" }, "破甲 ", h("b", null, "100/100")),
-					h("span", { className: "dshp-pierce-chip" }, "插件 ", h("b", null, "v1.1.72")),
+					h("span", { className: "dshp-pierce-chip" }, "插件 ", h("b", null, "v1.1.73")),
 					h("span", { className: "dshp-pierce-chip" }, "DSH ", h("b", null, "0.2.0-rc.2")),
 					h("span", { className: "dshp-pierce-chip ok" }, "六层装载 OK"),
 					h("span", { className: "dshp-pierce-chip" }, "主人 ", h("b", null, "笙歌")),
