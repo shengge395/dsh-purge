@@ -1,4 +1,4 @@
-# dsh-purge · 破甲插件
+﻿# dsh-purge · 破甲插件
 
 DeepSeek Harness 的规则设定插件：把「清洗 / 演练台 / 破甲」三件事收在一个面板里，并在每轮 system prompt 的头尾各注入一层约束，让模型按框架直接产出交付物。
 
@@ -64,3 +64,8 @@ postPrompt: |-   # 尾层，见文件内
 ## 许可
 
 MIT。原始 dsh-purge 由 小杨 编写，本仓库是基于它的自用分支。
+
+## 版本号规则
+
+小改动只 +0.0.1（1.1.72 → 1.1.73），成体系的升级才 +0.1.0（1.1.73 → 1.2.0），不动宿主契约永远不进 2.x。改版本用脚本，不要手改：
+ode scripts/bump.mjs patch。细则见 [docs/VERSIONING.md](docs/VERSIONING.md)。
